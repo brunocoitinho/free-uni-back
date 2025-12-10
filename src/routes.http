@@ -1,0 +1,28 @@
+GET http://localhost:3333/courses
+
+###
+GET http://localhost:3333/courses/87e572b7-dd28-4fd5-b10b-ddfeda99f596
+
+###
+GET http://localhost:3333/courses?title=comp
+
+###
+POST http://localhost:3333/courses
+Content-Type: application/json
+
+{
+    "title": "Curso de Teste",
+    "field": "Ciência da Computação"
+}
+
+###
+PUT http://localhost:3333/courses/3a3f6433-d0da-4ae6-ac78-e5c05dd89c7d
+Content-Type: application/json
+
+{
+    "title": "Curso de Teste Alterado",
+    "field": "Ciência da Computação"
+}
+
+###
+DELETE http://localhost:3333/courses/3a3f6433-d0da-4ae6-ac78-e5c05dd89c7d
