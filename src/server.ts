@@ -7,7 +7,7 @@ const server = fastify();
 
 const database = new DatabasePostgres();
 
-server.get("/courses", async (request: FastifyRequest<{ Querystring: { search?: string, title?: string, field?: string} }>, reply) => {
+server.get("/courses", async (request: FastifyRequest<{ Querystring: { search?: string, title?: string, field?: string} }>, reply: import('fastify').FastifyReply) => {
     const searchTerm = request.query.search as string;
     const titleSearch = request.query.title as string;
     const fieldSearch = request.query.field as string;
@@ -29,7 +29,7 @@ server.get("/courses", async (request: FastifyRequest<{ Querystring: { search?: 
     return courses;
 });
 
-server.get('/courses/:id', async (request, reply) => {
+server.get('/courses/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: import('fastify').FastifyReply) => {
     const { id } = request.params as { id: string };
     const course = await database.getCourse(id);
     if (!course) {
@@ -38,13 +38,13 @@ server.get('/courses/:id', async (request, reply) => {
     return course;
 })
 
-server.post("/courses", async (request, reply) => {
+server.post("/courses", async (request: FastifyRequest<{ Body: Course }>, reply: import('fastify').FastifyReply) => {
     const { title, field } = request.body as Course;
     await database.createCourse({ title, field });
     return reply.status(201).send();
 });
 
-server.put("/courses/:id", async (request, reply) => {
+server.put("/courses/:id", async (request: FastifyRequest<{ Params: { id: string }, Body: Course }>, reply: import('fastify').FastifyReply) => {
     const { id } = request.params as { id: string };
     const { title, field} = request.body as Course;
     if (!field) {
@@ -55,7 +55,7 @@ server.put("/courses/:id", async (request, reply) => {
 });
 
 
-server.delete("/courses/:id", async (request, reply) => {
+server.delete("/courses/:id", async (request: FastifyRequest<{ Params: { id: string } }>, reply: import('fastify').FastifyReply) => {
     const { id } = request.params as { id: string };
     await database.deleteCourse(id);
     return reply.status(204).send();

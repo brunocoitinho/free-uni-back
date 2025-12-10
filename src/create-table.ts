@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS resources;`
         .then(() => {
             console.log("Resources table dropped successfully.");
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.error("Error dropping Resources table:", error);
         });
     await sql`
@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS lessons;`
         .then(() => {
             console.log("Lessons table dropped successfully.");
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.error("Error dropping Lessons table:", error);
         });
     await sql`
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS courses;`
         .then(() => {
             console.log("Courses table dropped successfully.");
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.error("Error dropping Courses table:", error);
         });
     await sql`
@@ -30,7 +30,7 @@ DROP TYPE IF EXISTS resource_type;`
         .then(() => {
             console.log("Resource_type type dropped successfully.");
         })
-        .catch((error) => {
+        .catch((error: any) => {
             console.error("Error dropping Resource_type type:", error);
         });
 
@@ -79,6 +79,6 @@ createTable()
     .then(() => {
         console.log("Tables created successfully.");
     })
-    .catch((error) => {
+    .catch((error: any) => {
         console.error("Error creating tables:", error);
     });
