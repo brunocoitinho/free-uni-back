@@ -11,7 +11,7 @@ server.get("/courses", async (request: FastifyRequest<{ Querystring: { search?: 
     const searchTerm = request.query.search as string;
     const titleSearch = request.query.title as string;
     const fieldSearch = request.query.field as string;
-    
+
     if (searchTerm) {
         const courses = await database.listCourses({ searchTerm });
         return courses;
@@ -73,7 +73,7 @@ server.delete("/courses/:id", async (request, reply) => {
 // server.delete('/lessons/:id', async (request, reply) => {})
 
 server.listen({
-    port: 3333,
+    port: parseInt(process.env.PORT || "3333"),
     host: "0.0.0.0",
 });
 
